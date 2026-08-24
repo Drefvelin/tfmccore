@@ -1,0 +1,21 @@
+# VF vehicle type id (vehicles/*.yml key) -> group name
+groups:
+  plane:
+    vehicles:
+      - example_plane
+  ship:
+    vehicles:
+      - ironclad
+
+# group + VF VehicleDeath name lowercased -> stat_key in DB
+death-stats:
+  plane:
+    crash: planes_crashed
+  ship:
+    crash: ships_crashed
+    sink: ships_sunk
+
+labels:
+  planes_crashed: "Planes crashed"
+  ships_crashed: "Ships crashed"
+  ships_sunk: "Ships sunk"

@@ -1,0 +1,948 @@
+drops:
+    ####HERBS####
+    iron_oak_leaves:
+        materials:
+            - oak_leaves
+            - dark_oak_leaves
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.dying_leaf(0.06)
+            - m.herbs.clover(0.06)
+    iron_birch_leaves:
+        materials:
+            - birch_leaves
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.birch_seed(0.06)
+            - m.herbs.glowpea_pod(0.04)
+    iron_spruce_leaves:
+        materials:
+            - spruce_leaves
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.autumn_leaf(0.06)
+            - m.herbs.grapeberries(0.04)
+    iron_jungle_leaves:
+        materials:
+            - jungle_leaves
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.spot_leaf(0.06)
+            - m.herbs.fiery_fruit(0.04)
+    iron_acacia_leaves:
+        materials:
+            - acacia_leaves
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.fire_leaf(0.06)
+            - m.herbs.fiery_fruit(0.04)
+    iron_mangrove_leaves:
+        materials:
+            - mangrove_leaves
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.long_leaf(0.06)
+            - m.herbs.nightshade(0.04)
+    iron_cherry_leaves:
+        materials:
+            - cherry_leaves
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.dwindle_leaf(0.06)
+            - m.herbs.mirkberries(0.04)
+    iron_crimson_leaves:
+        materials:
+            - nether_wart_block
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.arcane_leaf(0.06)
+            - m.herbs.death_fruit(0.04)
+    iron_warped_leaves:
+        materials:
+            - warped_wart_block
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.poison_leaf(0.06)
+            - m.herbs.eye_fruit(0.04)
+    iron_tree_log:
+        materials:
+            - oak_log
+            - dark_oak_log
+            - birch_log
+            - spruce_log
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.burrow_root(0.06)
+            - m.herbs.holt_core(0.02)
+    iron_tree_log_2:
+        materials:
+            - jungle_log
+            - acacia_log
+            - mangrove_log
+            - cherry_log
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.thorn_root(0.06)
+            - m.herbs.cloro_core(0.02)
+    iron_grass:
+        materials:
+            - fern
+            - large_fern
+            - short_grass
+            - tall_grass
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.clover(0.06)
+    iron_pumpkin:
+        materials:
+            - pumpkin
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.pumpkin_spore(0.06)
+    iron_water:
+        materials:
+            - kelp
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.kelpberry(0.06)
+    iron_fungus:
+        materials:
+            - brown_mushroom
+            - red_mushroom
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.barkshroom(0.06)
+            - m.herbs.caveshroom(0.06)
+            - m.herbs.flatshroom(0.06)
+    iron_nether_roots:
+        materials:
+            - crimson_roots
+            - warped_roots
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.blazed_root(0.06)
+            - m.herbs.poison_root(0.06)
+            - m.herbs.serpent_root(0.02)
+    iron_nether_fungus:
+        materials:
+            - crimson_fungus
+            - warped_fungus
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.death_fruit(0.06)
+            - m.herbs.eye_fruit(0.06)
+    iron_cold_blocks:
+        materials:
+            - ice
+            - snow_block
+        tool: tools.iron_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.frost_tubes(0.06)
+            - m.herbs.frost_root(0.06)
+            - m.herbs.frost_flowers(0.06)
+    steel_oak_leaves:
+        materials:
+            - oak_leaves
+            - dark_oak_leaves
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.dying_leaf(0.08)
+            - m.herbs.clover(0.08)
+    steel_birch_leaves:
+        materials:
+            - birch_leaves
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.birch_seed(0.08)
+            - m.herbs.glowpea_pod(0.06)
+    steel_spruce_leaves:
+        materials:
+            - spruce_leaves
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.autumn_leaf(0.08)
+            - m.herbs.grapeberries(0.06)
+    steel_jungle_leaves:
+        materials:
+            - jungle_leaves
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.spot_leaf(0.08)
+            - m.herbs.fiery_fruit(0.06)
+    steel_acacia_leaves:
+        materials:
+            - acacia_leaves
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.fire_leaf(0.08)
+            - m.herbs.fiery_fruit(0.06)
+    steel_mangrove_leaves:
+        materials:
+            - mangrove_leaves
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.long_leaf(0.08)
+            - m.herbs.nightshade(0.06)
+    steel_cherry_leaves:
+        materials:
+            - cherry_leaves
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.dwindle_leaf(0.08)
+            - m.herbs.mirkberries(0.06)
+    crimson_leaves:
+        materials:
+            - nether_wart_block
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.arcane_leaf(0.08)
+            - m.herbs.death_fruit(0.06)
+    steel_warped_leaves:
+        materials:
+            - warped_wart_block
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.poison_leaf(0.08)
+            - m.herbs.eye_fruit(0.06)
+    steel_tree_log:
+        materials:
+            - oak_log
+            - dark_oak_log
+            - birch_log
+            - spruce_log
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.burrow_root(0.08)
+            - m.herbs.holt_core(0.06)
+    steel_tree_log_2:
+        materials:
+            - jungle_log
+            - acacia_log
+            - mangrove_log
+            - cherry_log
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.thorn_root(0.08)
+            - m.herbs.cloro_core(0.06)
+    steel_grass:
+        materials:
+            - fern
+            - large_fern
+            - short_grass
+            - tall_grass
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.clover(0.08)
+    pumpkin:
+        materials:
+            - pumpkin
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.pumpkin_spore(0.08)
+    steel_water:
+        materials:
+            - kelp
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.kelpberry(0.08)
+    steel_fungus:
+        materials:
+            - brown_mushroom
+            - red_mushroom
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.barkshroom(0.08)
+            - m.herbs.caveshroom(0.08)
+            - m.herbs.flatshroom(0.08)
+    nether_roots:
+        materials:
+            - crimson_roots
+            - warped_roots
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.blazed_root(0.08)
+            - m.herbs.poison_root(0.08)
+            - m.herbs.serpent_root(0.06)
+    steel_nether_fungus:
+        materials:
+            - crimson_fungus
+            - warped_fungus
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.death_fruit(0.08)
+            - m.herbs.eye_fruit(0.08)
+    steel_cold_blocks:
+        materials:
+            - ice
+            - snow_block
+        tool: tools.steel_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.frost_tubes(0.08)
+            - m.herbs.frost_root(0.08)
+            - m.herbs.frost_flowers(0.08)
+    abyssalite_oak_leaves:
+        materials:
+            - oak_leaves
+            - dark_oak_leaves
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.dying_leaf(0.1)
+            - m.herbs.clover(0.1)
+    abyssalite_birch_leaves:
+        materials:
+            - birch_leaves
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.birch_seed(0.1)
+            - m.herbs.glowpea_pod(0.08)
+    abyssalite_spruce_leaves:
+        materials:
+            - spruce_leaves
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.autumn_leaf(0.1)
+            - m.herbs.grapeberries(0.08)
+    abyssalite_jungle_leaves:
+        materials:
+            - jungle_leaves
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.spot_leaf(0.1)
+            - m.herbs.fiery_fruit(0.08)
+    abyssalite_acacia_leaves:
+        materials:
+            - acacia_leaves
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.fire_leaf(0.1)
+            - m.herbs.fiery_fruit(0.08)
+    abyssalite_mangrove_leaves:
+        materials:
+            - mangrove_leaves
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.long_leaf(0.1)
+            - m.herbs.nightshade(0.08)
+    abyssalite_cherry_leaves:
+        materials:
+            - cherry_leaves
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.dwindle_leaf(0.1)
+            - m.herbs.mirkberries(0.08)
+    abyssalite_crimson_leaves:
+        materials:
+            - nether_wart_block
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.arcane_leaf(0.1)
+            - m.herbs.death_fruit(0.08)
+    abyssalite_warped_leaves:
+        materials:
+            - warped_wart_block
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.poison_leaf(0.1)
+            - m.herbs.eye_fruit(0.08)
+    abyssalite_tree_log:
+        materials:
+            - oak_log
+            - dark_oak_log
+            - birch_log
+            - spruce_log
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.burrow_root(0.1)
+            - m.herbs.holt_core(0.08)
+    abyssalite_tree_log_2:
+        materials:
+            - jungle_log
+            - acacia_log
+            - mangrove_log
+            - cherry_log
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.thorn_root(0.1)
+            - m.herbs.cloro_core(0.08)
+    abyssalite_grass:
+        materials:
+            - fern
+            - large_fern
+            - short_grass
+            - tall_grass
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.clover(0.1)
+    abyssalite_pumpkin:
+        materials:
+            - pumpkin
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.pumpkin_spore(0.1)
+    abyssalite_water:
+        materials:
+            - kelp
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.kelpberry(0.1)
+    abyssalite_fungus:
+        materials:
+            - brown_mushroom
+            - red_mushroom
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.barkshroom(0.1)
+            - m.herbs.caveshroom(0.1)
+            - m.herbs.flatshroom(0.1)
+    abyssalite_nether_roots:
+        materials:
+            - crimson_roots
+            - warped_roots
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.blazed_root(0.1)
+            - m.herbs.poison_root(0.1)
+            - m.herbs.serpent_root(0.08)
+    abyssalite_nether_fungus:
+        materials:
+            - crimson_fungus
+            - warped_fungus
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.death_fruit(0.12)
+            - m.herbs.eye_fruit(0.12)
+    abyssalite_cold_blocks:
+        materials:
+            - ice
+            - snow_block
+        tool: tools.abyssalite_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.frost_tubes(0.12)
+            - m.herbs.frost_root(0.12)
+            - m.herbs.frost_flowers(0.12)
+    mythril_oak_leaves:
+        materials:
+            - oak_leaves
+            - dark_oak_leaves
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.dying_leaf(0.12)
+            - m.herbs.clover(0.12)
+    mythril_birch_leaves:
+        materials:
+            - birch_leaves
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.birch_seed(0.12)
+            - m.herbs.glowpea_pod(0.1)
+    mythril_spruce_leaves:
+        materials:
+            - spruce_leaves
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.autumn_leaf(0.12)
+            - m.herbs.grapeberries(0.1)
+    mythril_jungle_leaves:
+        materials:
+            - jungle_leaves
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.spot_leaf(0.12)
+            - m.herbs.fiery_fruit(0.1)
+    mythril_acacia_leaves:
+        materials:
+            - acacia_leaves
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.fire_leaf(0.12)
+            - m.herbs.fiery_fruit(0.1)
+    mythril_mangrove_leaves:
+        materials:
+            - mangrove_leaves
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.long_leaf(0.12)
+            - m.herbs.nightshade(0.1)
+    mythril_cherry_leaves:
+        materials:
+            - cherry_leaves
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.dwindle_leaf(0.12)
+            - m.herbs.mirkberries(0.1)
+    mythril_crimson_leaves:
+        materials:
+            - nether_wart_block
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.arcane_leaf(0.12)
+            - m.herbs.death_fruit(0.1)
+    mythril_warped_leaves:
+        materials:
+            - warped_wart_block
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.poison_leaf(0.12)
+            - m.herbs.eye_fruit(0.1)
+    mythril_tree_log:
+        materials:
+            - oak_log
+            - dark_oak_log
+            - birch_log
+            - spruce_log
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.burrow_root(0.12)
+            - m.herbs.holt_core(0.1)
+    mythril_tree_log_2:
+        materials:
+            - jungle_log
+            - acacia_log
+            - mangrove_log
+            - cherry_log
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.thorn_root(0.12)
+            - m.herbs.cloro_core(0.1)
+    mythril_grass:
+        materials:
+            - fern
+            - large_fern
+            - short_grass
+            - tall_grass
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.clover(0.12)
+    mythril_pumpkin:
+        materials:
+            - pumpkin
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.pumpkin_spore(0.12)
+    mythril_water:
+        materials:
+            - kelp
+        tool: tools.amythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.kelpberry(0.12)
+    mythril_fungus:
+        materials:
+            - brown_mushroom
+            - red_mushroom
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.barkshroom(0.12)
+            - m.herbs.caveshroom(0.12)
+            - m.herbs.flatshroom(0.12)
+    mythril_nether_roots:
+        materials:
+            - crimson_roots
+            - warped_roots
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.blazed_root(0.12)
+            - m.herbs.poison_root(0.12)
+            - m.herbs.serpent_root(0.1)
+    mythril_nether_fungus:
+        materials:
+            - crimson_fungus
+            - warped_fungus
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.death_fruit(0.12)
+            - m.herbs.eye_fruit(0.12)
+    mythril_cold_blocks:
+        materials:
+            - ice
+            - snow_block
+        tool: tools.mythril_alchemy_collector
+        vanilla_drops: false
+        drops:
+            - m.herbs.frost_tubes(0.12)
+            - m.herbs.frost_root(0.12)
+            - m.herbs.frost_flowers(0.1)
+    ###ORES###
+    gold_drop:
+        materials:
+            - gold_ore
+            - deepslate_gold_ore
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.goldsmith_drop
+        drops:
+            - m.materials.rough_gold(0.36)
+            - m.materials.moldable_gold(0.24)
+            - m.materials.shiny_gold(0.12)
+    basic_gem_drop:
+        materials:
+            - iron_ore
+            - coal_ore
+            - copper_ore
+            - gold_ore
+            - diamond_ore
+            - redstone_ore
+            - lapis_ore
+            - emerald_ore
+            - deepslate_iron_ore
+            - deepslate_coal_ore
+            - deepslate_copper_ore
+            - deepslate_gold_ore
+            - deepslate_diamond_ore
+            - deepslate_lapis_ore
+            - deepslate_redstone_ore
+            - deepslate_emerald_ore
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.gemstone_miner_1
+        drops:
+            - m.gemstones.agate(0.0002)
+            - m.gemstones.jasper(0.0002)
+            - m.gemstones.onyx(0.0002)
+            - m.gemstones.tourmaline(0.0002)
+            - m.gemstones.pearl(0.0002)
+            - m.gemstones.coral(0.0002)
+            - m.gemstones.chrysophrase(0.0002)
+            - m.gemstones.larimar(0.0002)
+            - m.gemstones.rhodonite(0.0002)
+            - m.gemstones.vesuvianite(0.0002)
+    polished_gem_drop:
+        materials:
+            - iron_ore
+            - coal_ore
+            - copper_ore
+            - gold_ore
+            - diamond_ore
+            - redstone_ore
+            - lapis_ore
+            - emerald_ore
+            - deepslate_iron_ore
+            - deepslate_coal_ore
+            - deepslate_copper_ore
+            - deepslate_gold_ore
+            - deepslate_diamond_ore
+            - deepslate_lapis_ore
+            - deepslate_redstone_ore
+            - deepslate_emerald_ore
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.gemstone_miner_2
+        drops:
+            - m.gemstones.turquoise(0.0001)
+            - m.gemstones.peridot(0.0001)
+            - m.gemstones.malachite(0.0001)
+            - m.gemstones.zircon(0.0001)
+            - m.gemstones.apatite(0.0001)
+            - m.gemstones.carnelian(0.0001)
+            - m.gemstones.labradorite(0.0001)
+            - m.gemstones.sardonyx(0.0001)
+            - m.gemstones.variscite(0.0001)
+            - m.gemstones.wulfenite(0.0001)
+    radiant_gem_drop:
+        materials:
+            - iron_ore
+            - coal_ore
+            - copper_ore
+            - gold_ore
+            - diamond_ore
+            - redstone_ore
+            - lapis_ore
+            - emerald_ore
+            - deepslate_iron_ore
+            - deepslate_coal_ore
+            - deepslate_copper_ore
+            - deepslate_gold_ore
+            - deepslate_diamond_ore
+            - deepslate_lapis_ore
+            - deepslate_redstone_ore
+            - deepslate_emerald_ore
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.gemstone_miner_3
+        drops:
+            - m.gemstones.aquamarine(0.00005)
+            - m.gemstones.garnet(0.00005)
+            - m.gemstones.opal(0.00005)
+            - m.gemstones.tanzanite(0.00005)
+            - m.gemstones.moonstone(0.00005)
+            - m.gemstones.sunstone(0.00005)
+            - m.gemstones.spinel(0.00005)
+            - m.gemstones.alexandrite(0.00005)
+            - m.gemstones.firestone(0.00005)
+            - m.gemstones.cloudstone(0.00005)
+    rare_resource_drop:
+        materials:
+            - iron_ore
+            - gold_ore
+            - diamond_ore
+            - redstone_ore
+            - lapis_ore
+            - emerald_ore
+            - copper_ore
+            - deepslate_iron_ore
+            - deepslate_gold_ore
+            - deepslate_diamond_ore
+            - deepslate_lapis_ore
+            - deepslate_redstone_ore
+            - deepslate_emerald_ore
+            - deepslate_copper_ore
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.gemstone_miner_4
+        drops:
+            - m.materials.slightly_magic_crystallite_shard(0.0008)
+            - m.materials.slightly_magic_ruby_shard(0.0006)
+            - m.materials.slightly_magic_emerald_shard(0.0004)
+            - m.research.lost_knowledge_scrap(0.0004)
+            - m.materials.ignitium(0.0001)
+    runestone_drop:
+        materials:
+            - iron_ore
+            - gold_ore
+            - diamond_ore
+            - redstone_ore
+            - lapis_ore
+            - emerald_ore
+            - copper_ore
+            - deepslate_iron_ore
+            - deepslate_gold_ore
+            - deepslate_diamond_ore
+            - deepslate_lapis_ore
+            - deepslate_redstone_ore
+            - deepslate_emerald_ore
+            - deepslate_copper_ore
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.gemstone_miner_5
+        drops:
+            - m.loot.staff_runestone(0.0004)
+            - m.loot.wand_runestone(0.0002)
+            - m.loot.sword_runestone(0.0002)
+            - m.loot.armor_runestone(0.0001)
+    mythical_gem_drop:
+        materials:
+            - iron_ore
+            - coal_ore
+            - copper_ore
+            - gold_ore
+            - diamond_ore
+            - redstone_ore
+            - lapis_ore
+            - emerald_ore
+            - deepslate_iron_ore
+            - deepslate_coal_ore
+            - deepslate_copper_ore
+            - deepslate_gold_ore
+            - deepslate_diamond_ore
+            - deepslate_lapis_ore
+            - deepslate_redstone_ore
+            - deepslate_emerald_ore
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.gemstone_miner_6
+        drops:
+            - m.gemstones.ruby(0.00005)
+            - m.gemstones.sapphire(0.00005)
+            - m.gemstones.topaz(0.00005)
+            - m.gemstones.citrine(0.00005)
+            - m.gemstones.morganite(0.00005)
+            - m.gemstones.crystallite(0.00005)
+            - m.gemstones.tigers_eye(0.00005)
+            - m.gemstones.serpents_eye(0.00005)
+            - m.gemstones.musgravite(0.00005)
+            - m.gemstones.taaffeite(0.00005)
+    ###WOOD###
+    bark:
+        materials:
+            - spruce_log
+            - oak_log
+            - birch_log
+            - jungle_log
+            - dark_oak_log
+            - acacia_log
+            - cherry_log
+            - mangrove_log
+            - pale_oak_log
+        tool: none
+        vanilla_drops: true
+        drops:
+            - m.materials.bark(0.01)
+    wood_core:
+        materials:
+            - spruce_log
+            - oak_log
+            - birch_log
+            - jungle_log
+            - dark_oak_log
+            - acacia_log
+            - cherry_log
+            - mangrove_log
+            - pale_oak_log
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.tree_gatherer_1
+        drops:
+            - m.materials.wood_core(0.016)
+    flower_core:
+        materials:
+            - spruce_log
+            - oak_log
+            - birch_log
+            - jungle_log
+            - dark_oak_log
+            - acacia_log
+            - cherry_log
+            - mangrove_log
+            - pale_oak_log
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.tree_gatherer_2
+        drops:
+            - m.materials.flower_core(0.016)
+    special_wood:
+        materials:
+            - spruce_log
+            - oak_log
+            - birch_log
+            - jungle_log
+            - dark_oak_log
+            - acacia_log
+            - cherry_log
+            - mangrove_log
+            - pale_oak_log
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.tree_gatherer_3
+        drops:
+            - m.materials.valewood(0.01)
+            - m.materials.runebark(0.01)
+            - m.materials.amberpine(0.01)
+            - m.materials.goldmaple(0.01)
+            - m.materials.silk(0.01)
+    extra_bark:
+        materials:
+            - spruce_log
+            - oak_log
+            - birch_log
+            - jungle_log
+            - dark_oak_log
+            - acacia_log
+            - cherry_log
+            - mangrove_log
+            - pale_oak_log
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.tree_gatherer_4
+        drops:
+            - m.materials.bark(0.03)
+    tree_gatherer_5:
+        materials:
+            - spruce_log
+            - oak_log
+            - birch_log
+            - jungle_log
+            - dark_oak_log
+            - acacia_log
+            - cherry_log
+            - mangrove_log
+            - pale_oak_log
+        tool: none
+        vanilla_drops: true
+        required_permissions:
+            - professions.tree_gatherer_5
+        drops:
+            - m.loot.staff_runestone(0.0004)
+            - m.loot.wand_runestone(0.0002)
+            - m.loot.sword_runestone(0.0002)
+            - m.loot.armor_runestone(0.0001)
+            - m.research.lost_knowledge_scrap(0.0001)
+    ###EXPLOITS###
+    gilded_blackstone:
+        materials:
+            - gilded_blackstone
+        tool: none
+        vanilla_drops: false
+        drops:
+
+

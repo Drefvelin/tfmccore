@@ -1,0 +1,16 @@
+stations:
+  - crafting_table tool-station
+  - blast_furnace ingot-station
+  - fletching_table forester-station
+  - brewing_stand alchemy-station
+  - stonecutter block-station
+  - jukebox instrument-station
+  - cartography_table research-station
+  - tfmc:alchemy_station_placed medicine-station
+  - tfmc:ammunition_station engineer-station
+  - tfmc:meal_prep_station meal-prep-station
+  - tfmc:fishing_station fishing-station
+  - tfmc:magic_crafting_station magic-station
+  - tfmc:animal_station animal-station
+  - tfmc:weapon_station weapon-station
+  - tfmc:armor_station armor-station

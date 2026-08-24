@@ -1,0 +1,18 @@
+main: net.tfminecraft.tfmccore.TFMCCore
+api-version: 1.21
+name: TFMCCore
+version: 1.0
+author: Drefvelin
+
+depend: [TLibs]
+softdepend: [VehicleFramework]
+
+commands:
+  tfmc:
+    description: TFMC Server command
+    usage: /tfmc stats <category> [player]
+
+permissions:
+  tfmccore.admin:
+    description: View other players' stats and server-wide totals
+    default: op
