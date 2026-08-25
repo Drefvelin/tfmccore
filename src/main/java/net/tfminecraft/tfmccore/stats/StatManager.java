@@ -44,10 +44,27 @@ public final class StatManager {
     }
 
     public void increment(UUID playerUuid, String category, String statKey, long delta) {
+        if (!isValidIncrement(playerUuid, category, statKey, delta)) {
+            return;
+        }
+        adjust(playerUuid, category, statKey, delta);
+    }
+
+    public void decrement(UUID playerUuid, String category, String statKey, long amount) {
         if (!config.isEnabled()) {
             return;
         }
-        if (!isValidIncrement(playerUuid, category, statKey, delta)) {
+        if (playerUuid == null || isBlank(category) || isBlank(statKey) || amount <= 0L) {
+            return;
+        }
+        adjust(playerUuid, category, statKey, -amount);
+    }
+
+    public void adjust(UUID playerUuid, String category, String statKey, long delta) {
+        if (!config.isEnabled()) {
+            return;
+        }
+        if (!isValidAdjust(playerUuid, category, statKey, delta)) {
             return;
         }
 
@@ -94,6 +111,10 @@ public final class StatManager {
 
     private static boolean isValidIncrement(UUID playerUuid, String category, String statKey, long delta) {
         return playerUuid != null && !isBlank(category) && !isBlank(statKey) && delta > 0L;
+    }
+
+    private static boolean isValidAdjust(UUID playerUuid, String category, String statKey, long delta) {
+        return playerUuid != null && !isBlank(category) && !isBlank(statKey) && delta != 0L;
     }
 
     private static boolean isBlank(String value) {

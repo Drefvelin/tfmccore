@@ -36,4 +36,24 @@ class SqliteStatStorageTest {
 
         storage.close();
     }
+
+    @Test
+    void decrementAndFloorAtZero(@TempDir Path tempDir) {
+        File dbFile = tempDir.resolve("stats-decrement.db").toFile();
+        SqliteStatStorage storage = new SqliteStatStorage(dbFile);
+
+        UUID playerUuid = UUID.fromString("00000000-0000-0000-0000-000000000002");
+        String category = "test";
+        String statKey = "spread";
+
+        storage.increment(playerUuid, category, statKey, 2L);
+        storage.increment(playerUuid, category, statKey, -1L);
+        assertEquals(1L, storage.getPlayerValue(playerUuid, category, statKey));
+
+        storage.increment(playerUuid, category, statKey, -5L);
+        assertEquals(0L, storage.getPlayerValue(playerUuid, category, statKey));
+        assertEquals(0L, storage.getServerTotal(category, statKey));
+
+        storage.close();
+    }
 }

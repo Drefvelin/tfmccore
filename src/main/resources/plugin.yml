@@ -5,7 +5,7 @@ version: 1.0
 author: Drefvelin
 
 depend: [TLibs]
-softdepend: [VehicleFramework]
+softdepend: [VehicleFramework, RPCharacters, AdvancedCrafting, MythicLib, MMOCore, SimpleFactions]
 
 commands:
   tfmc:

@@ -1,0 +1,26 @@
+labels:
+  alloys_discovered: "Alloys discovered"
+  alloys_crafted: "Alloys crafted"
+  items_crafted: "Items crafted"
+  items_crafted_armor: "Armor crafted"
+  items_crafted_weapons: "Weapons crafted"
+  items_crafted_bows: "Bows crafted"
+  hits_hit: "Hits (hammer)"
+  hits_small_hit: "Small hits"
+  hits_whittle: "Whittles"
+  hits_etch: "Etches"
+  hits_engrave: "Engraves"
+  hits_sew: "Sews"
+
+category_labels:
+  armor: "Armor"
+  weapons: "Weapons"
+  bows: "Bows"
+
+hit_labels:
+  hit: "Hit"
+  small_hit: "Small hit"
+  whittle: "Whittle"
+  etch: "Etch"
+  engrave: "Engrave"
+  sew: "Sew"

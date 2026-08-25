@@ -28,7 +28,7 @@ public final class SqliteStatStorage implements StatStorage {
             INSERT INTO stat_totals (player_uuid, category, stat_key, value)
             VALUES (?, ?, ?, ?)
             ON CONFLICT(player_uuid, category, stat_key)
-            DO UPDATE SET value = stat_totals.value + excluded.value
+            DO UPDATE SET value = MAX(0, stat_totals.value + excluded.value)
             """;
 
     private final SqliteDatabase database;

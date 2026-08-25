@@ -1,0 +1,20 @@
+labels:
+  characters_created: "Characters created"
+  characters_killed: "Characters killed"
+  messages_rp: "RP messages sent"
+  messages_ooc: "OOC messages sent"
+  messages_looc: "LOOC messages sent"
+  messages_whisper: "Whisper messages sent"
+  messages_shout: "Shout messages sent"
+  messages_yell: "Yell messages sent"
+  messages_action: "Action messages sent"
+  messages_admin: "Admin messages sent"
+  messages_helper: "Helper messages sent"
+  messages_dm: "DM messages sent"
+  messages_scene: "Scene messages sent"
+
+class_labels:
+  warrior: "Warrior"
+
+race_labels:
+  human: "Human"
