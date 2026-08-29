@@ -12,6 +12,8 @@ import net.tfminecraft.tfmccore.focus.FocusListener;
 import net.tfminecraft.tfmccore.focus.FocusService;
 import net.tfminecraft.tfmccore.focus.FocusStore;
 import net.tfminecraft.tfmccore.focus.RpCharactersBridge;
+import net.tfminecraft.tfmccore.letters.LetterConfigLoader;
+import net.tfminecraft.tfmccore.letters.LetterListener;
 import net.tfminecraft.tfmccore.loader.ConfigLoader;
 import net.tfminecraft.tfmccore.loader.DropLoader;
 import net.tfminecraft.tfmccore.loader.StationLoader;
@@ -55,6 +57,7 @@ public class TFMCCore extends JavaPlugin{
     private final CoreTabCompletion tabCompletion = new CoreTabCompletion();
     private FocusService focusService;
     private WhistleListener whistleListener;
+    private LetterListener letterListener;
 
     @Override
     public void onEnable() {
@@ -63,6 +66,7 @@ public class TFMCCore extends JavaPlugin{
         loadConfigs();
         initFocus();
         initWhistle();
+        initLetters();
         initStats();
         registerListeners();
         getCommand(commands.cmd1).setExecutor(commands);
@@ -98,6 +102,7 @@ public class TFMCCore extends JavaPlugin{
         ok &= stationLoader.load(new File(getDataFolder(), "stations.yml"));
         ok &= reloadFocusConfig();
         ok &= reloadWhistleConfig();
+        ok &= reloadLettersConfig();
         ok &= reloadStatsConfigs();
         return ok;
     }
@@ -134,6 +139,10 @@ public class TFMCCore extends JavaPlugin{
         return ok;
     }
 
+    public boolean reloadLettersConfig() {
+        return LetterConfigLoader.load(new File(getDataFolder(), "letters-config.yml"));
+    }
+
     private void initFocus() {
         File folder = new File(getDataFolder(), "data/focus");
         folder.mkdirs();
@@ -145,6 +154,11 @@ public class TFMCCore extends JavaPlugin{
     private void initWhistle() {
         whistleListener = new WhistleListener();
         getServer().getPluginManager().registerEvents(whistleListener, this);
+    }
+
+    private void initLetters() {
+        letterListener = new LetterListener();
+        getServer().getPluginManager().registerEvents(letterListener, this);
     }
 
     public boolean reloadStatsConfigs() {
@@ -204,7 +218,8 @@ public class TFMCCore extends JavaPlugin{
                 "skillsstats.yml",
                 "factionsstats.yml",
                 "focus.yml",
-                "animal-whistle-config.yml"
+                "animal-whistle-config.yml",
+                "letters-config.yml"
         };
 
         for (String s : files) {

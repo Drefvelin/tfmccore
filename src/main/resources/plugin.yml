@@ -10,7 +10,7 @@ softdepend: [VehicleFramework, RPCharacters, AdvancedCrafting, MythicLib, MMOCor
 commands:
   core:
     description: TFMC Core command
-    usage: /core reload [all|config|drops|stations|stats|focus|whistle] | /core stats <category> [player] | /core focus restore <player>
+    usage: /core reload [all|config|drops|stations|stats|focus|whistle|letters] | /core stats <category> [player] | /core focus restore <player>
     aliases: [tfmc]
 
 permissions:
