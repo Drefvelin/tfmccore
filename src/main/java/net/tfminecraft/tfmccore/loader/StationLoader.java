@@ -20,13 +20,14 @@ public class StationLoader {
 	public static String getByString(String id) {
 		return oList.get(id);
 	}
-	public void load(File configFile) {
+	public boolean load(File configFile) {
 		clear();
 		FileConfiguration config = new YamlConfiguration();
         try {
         	config.load(configFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
+            return false;
         }
 
 		List<String> list = config.getStringList("stations");
@@ -36,5 +37,6 @@ public class StationLoader {
             if(args.length < 2) continue;
             oList.put(args[0], args[1]);
 		}
+		return true;
 	}
 }

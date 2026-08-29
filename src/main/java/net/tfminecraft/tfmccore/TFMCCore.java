@@ -7,6 +7,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.Plugins.TLibs.database.SqliteProvider;
 import net.tfminecraft.tfmccore.commands.CoreCommands;
 import net.tfminecraft.tfmccore.commands.CoreTabCompletion;
+import net.tfminecraft.tfmccore.focus.FocusConfigLoader;
+import net.tfminecraft.tfmccore.focus.FocusListener;
+import net.tfminecraft.tfmccore.focus.FocusService;
+import net.tfminecraft.tfmccore.focus.FocusStore;
+import net.tfminecraft.tfmccore.focus.RpCharactersBridge;
 import net.tfminecraft.tfmccore.loader.ConfigLoader;
 import net.tfminecraft.tfmccore.loader.DropLoader;
 import net.tfminecraft.tfmccore.loader.StationLoader;
@@ -46,12 +51,14 @@ public class TFMCCore extends JavaPlugin{
 
     private final CoreCommands commands = new CoreCommands();
     private final CoreTabCompletion tabCompletion = new CoreTabCompletion();
+    private FocusService focusService;
 
     @Override
     public void onEnable() {
         plugin = this;
         createConfigs();
         loadConfigs();
+        initFocus();
         initStats();
         registerListeners();
         getCommand(commands.cmd1).setExecutor(commands);
@@ -60,6 +67,9 @@ public class TFMCCore extends JavaPlugin{
 
     @Override
     public void onDisable() {
+        if (focusService != null) {
+            focusService.shutdown();
+        }
         if (StatManager.isInitialized()) {
             StatManager.getInstance().shutdown();
         }
@@ -73,16 +83,60 @@ public class TFMCCore extends JavaPlugin{
         return StatManager.getInstance();
     }
 
-    public void loadConfigs() {
-        configLoader.loadConfig(new File(getDataFolder(), "config.yml"));
-        dropLoader.load(new File(getDataFolder(), "drops.yml"));
-        stationLoader.load(new File(getDataFolder(), "stations.yml"));
+    public static FocusService getFocusService() {
+        return plugin == null ? null : plugin.focusService;
+    }
+
+    public boolean loadConfigs() {
+        boolean ok = true;
+        ok &= configLoader.loadConfig(new File(getDataFolder(), "config.yml"));
+        ok &= dropLoader.load(new File(getDataFolder(), "drops.yml"));
+        ok &= stationLoader.load(new File(getDataFolder(), "stations.yml"));
+        ok &= reloadFocusConfig();
+        ok &= reloadStatsConfigs();
+        return ok;
+    }
+
+    public boolean reloadAll() {
+        return loadConfigs();
+    }
+
+    public boolean reloadConfigFile() {
+        return configLoader.loadConfig(new File(getDataFolder(), "config.yml"));
+    }
+
+    public boolean reloadDrops() {
+        return dropLoader.load(new File(getDataFolder(), "drops.yml"));
+    }
+
+    public boolean reloadStations() {
+        return stationLoader.load(new File(getDataFolder(), "stations.yml"));
+    }
+
+    public boolean reloadFocusConfig() {
+        boolean ok = FocusConfigLoader.load(new File(getDataFolder(), "focus.yml"));
+        if (ok && focusService != null) {
+            focusService.restartRegen();
+        }
+        return ok;
+    }
+
+    private void initFocus() {
+        File folder = new File(getDataFolder(), "data/focus");
+        folder.mkdirs();
+        focusService = new FocusService(new FocusStore(folder));
+        getServer().getPluginManager().registerEvents(new FocusListener(focusService), this);
+        focusService.start();
+    }
+
+    public boolean reloadStatsConfigs() {
         statsConfig.load(new File(getDataFolder(), "stats.yml"));
         vehiclesStatConfig.load(new File(getDataFolder(), "vehiclestats.yml"));
         rpCharactersStatConfig.load(new File(getDataFolder(), "rpcharactersstats.yml"));
         advancedCraftingStatConfig.load(new File(getDataFolder(), "advancedcraftingstats.yml"));
         skillsStatConfig.load(new File(getDataFolder(), "skillsstats.yml"));
         factionsStatConfig.load(new File(getDataFolder(), "factionsstats.yml"));
+        return true;
     }
 
     private void initStats() {
@@ -130,7 +184,8 @@ public class TFMCCore extends JavaPlugin{
                 "rpcharactersstats.yml",
                 "advancedcraftingstats.yml",
                 "skillsstats.yml",
-                "factionsstats.yml"
+                "factionsstats.yml",
+                "focus.yml"
         };
 
         for (String s : files) {

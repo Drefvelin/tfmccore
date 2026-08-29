@@ -8,11 +8,15 @@ depend: [TLibs]
 softdepend: [VehicleFramework, RPCharacters, AdvancedCrafting, MythicLib, MMOCore, SimpleFactions]
 
 commands:
-  tfmc:
-    description: TFMC Server command
-    usage: /tfmc stats <category> [player]
+  core:
+    description: TFMC Core command
+    usage: /core reload [all|config|drops|stations|stats|focus] | /core stats <category> [player] | /core focus restore <player>
+    aliases: [tfmc]
 
 permissions:
   tfmccore.admin:
     description: View other players' stats and server-wide totals
+    default: op
+  tfmccore.reload:
+    description: Reload TFMCCore configs
     default: op

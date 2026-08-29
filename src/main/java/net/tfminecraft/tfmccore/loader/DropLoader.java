@@ -26,13 +26,14 @@ public class DropLoader {
 	public static Drop getByString(String id) {
 		return oList.get(id);
 	}
-	public void load(File configFile) {
+	public boolean load(File configFile) {
 		clear();
 		FileConfiguration config = new YamlConfiguration();
         try {
         	config.load(configFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
+            return false;
         }
         Set<String> set = config.getKeys(false);
 
@@ -42,5 +43,6 @@ public class DropLoader {
 			Drop o = new Drop(key, config.getConfigurationSection(key));
 			oList.put(key, o);
 		}
+		return true;
 	}
 }

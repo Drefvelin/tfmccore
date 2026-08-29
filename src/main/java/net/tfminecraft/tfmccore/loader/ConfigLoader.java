@@ -12,13 +12,17 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import net.tfminecraft.tfmccore.cache.Cache;
 
 public class ConfigLoader {
-    public void loadConfig(File configFile) {
+    public boolean loadConfig(File configFile) {
 		FileConfiguration config = new YamlConfiguration();
         try {
         	config.load(configFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
+            return false;
         }
+
+        Cache.blockedConsume.clear();
+        Cache.blockedCrafts.clear();
 
         Cache.allowBoneMeal = config.getBoolean("bone-meal", true);
         Cache.limitShields = config.getBoolean("limit-shields", false);
@@ -47,5 +51,6 @@ public class ConfigLoader {
                 }
             }
         }
+        return true;
 	}
 }
