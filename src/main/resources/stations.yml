@@ -1,16 +1,48 @@
+# click: right | shift_right
+# Vanilla-use blocks use shift_right so a normal right-click still opens vanilla.
 stations:
-  - v(crafting_table) tool-station
-  - v(blast_furnace) ingot-station
-  - v(fletching_table) forester-station
-  - v(brewing_stand) alchemy-station
-  - v(stonecutter) block-station
-  - v(jukebox) instrument-station
-  - v(cartography_table) research-station
-  - iaf(tfmc:alchemy_station_placed) medicine-station
-  - iaf(tfmc:ammunition_station) engineer-station
-  - iaf(tfmc:meal_prep_station) meal-prep-station
-  - iaf(tfmc:fishing_station) fishing-station
-  - iaf(tfmc:magic_crafting_station) magic-station
-  - iaf(tfmc:animal_station) animal-station
-  - iaf(tfmc:weapon_station) weapon-station
-  - iaf(tfmc:armor_station) armor-station
+  tool-station:
+    block: v(crafting_table)
+    click: shift_right
+  ingot-station:
+    block: v(blast_furnace)
+    click: shift_right
+  forester-station:
+    block: v(fletching_table)
+    click: right
+  alchemy-station:
+    block: v(brewing_stand)
+    click: right
+  block-station:
+    block: v(stonecutter)
+    click: shift_right
+  instrument-station:
+    block: v(jukebox)
+    click: shift_right
+  research-station:
+    block: v(cartography_table)
+    click: shift_right
+  medicine-station:
+    block: iaf(tfmc:alchemy_station_placed)
+    click: right
+  engineer-station:
+    block: iaf(tfmc:ammunition_station)
+    click: right
+  meal-prep-station:
+    block: iaf(tfmc:meal_prep_station)
+    click: right
+  fishing-station:
+    block: iaf(tfmc:fishing_station)
+    click: right
+  magic-station:
+    block: iaf(tfmc:magic_crafting_station)
+    click: right
+  animal-station:
+    block: iaf(tfmc:animal_station)
+    click: right
+  weapon-station:
+    block: iaf(tfmc:weapon_station)
+    click: right
+  armor-station:
+    block: iaf(tfmc:armor_station)
+    click: right
