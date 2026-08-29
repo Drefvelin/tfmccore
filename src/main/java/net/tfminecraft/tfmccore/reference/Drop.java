@@ -26,7 +26,7 @@ public class Drop {
 
     public Drop(String key, ConfigurationSection config) {
         id = key;
-        vanillaDrops = config.getBoolean("vanilla-drops", true);
+        vanillaDrops = config.getBoolean("vanilla_drops", config.getBoolean("vanilla-drops", true));
 
         for(String s : config.getStringList("materials")) {
             String[] args = s.split("\\(");
@@ -93,13 +93,17 @@ public class Drop {
         return id;
     }
 
+    public boolean appliesTo(Block block) {
+        return blocks.containsKey(block.getType());
+    }
+
     public boolean hasVanillaDrops(Block block) {
-        if(!blocks.containsKey(block.getType())) return true;
+        if(!appliesTo(block)) return true;
         return vanillaDrops;
     }
 
     public void trigger(Player p, Block block, ItemStack tool) {
-        if(!blocks.containsKey(block.getType())) return;
+        if(!appliesTo(block)) return;
         double seed = Math.random();
         for(DropEntry drop : drops) {
             double chance = getFinalChance(drop.getChance(), p, tool, block.getType());

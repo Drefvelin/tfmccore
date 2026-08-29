@@ -2,13 +2,11 @@ package net.tfminecraft.tfmccore.loader;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -35,13 +33,15 @@ public class DropLoader {
             e.printStackTrace();
             return false;
         }
-        Set<String> set = config.getKeys(false);
+        ConfigurationSection root = config.getConfigurationSection("drops");
+        if (root == null) {
+            root = config;
+        }
 
-		List<String> list = new ArrayList<String>(set);
-		
-		for(String key : list) {
-			Drop o = new Drop(key, config.getConfigurationSection(key));
-			oList.put(key, o);
+		for (String key : root.getKeys(false)) {
+			ConfigurationSection section = root.getConfigurationSection(key);
+			if (section == null) continue;
+			oList.put(key, new Drop(key, section));
 		}
 		return true;
 	}

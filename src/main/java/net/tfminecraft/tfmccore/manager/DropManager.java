@@ -20,6 +20,7 @@ public class DropManager implements Listener{
         ItemStack tool = p.getInventory().getItemInMainHand();
 
         for(Drop drop : DropLoader.get()) {
+            if(!drop.appliesTo(b)) continue;
             if(!drop.hasVanillaDrops(b) && e.isDropItems()) e.setDropItems(false);
             new BukkitRunnable() {
             public void run()
