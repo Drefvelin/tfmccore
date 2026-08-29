@@ -12,6 +12,8 @@ import net.tfminecraft.tfmccore.focus.FocusListener;
 import net.tfminecraft.tfmccore.focus.FocusService;
 import net.tfminecraft.tfmccore.focus.FocusStore;
 import net.tfminecraft.tfmccore.focus.RpCharactersBridge;
+import net.tfminecraft.tfmccore.letters.LetterConfigLoader;
+import net.tfminecraft.tfmccore.letters.LetterListener;
 import net.tfminecraft.tfmccore.loader.ConfigLoader;
 import net.tfminecraft.tfmccore.loader.DropLoader;
 import net.tfminecraft.tfmccore.loader.StationLoader;
@@ -31,6 +33,8 @@ import net.tfminecraft.tfmccore.stats.categories.skills.SkillsStatCategory;
 import net.tfminecraft.tfmccore.stats.categories.skills.SkillsStatConfig;
 import net.tfminecraft.tfmccore.stats.categories.vehicles.VehiclesStatCategory;
 import net.tfminecraft.tfmccore.stats.categories.vehicles.VehiclesStatConfig;
+import net.tfminecraft.tfmccore.whistle.WhistleConfigLoader;
+import net.tfminecraft.tfmccore.whistle.WhistleListener;
 
 public class TFMCCore extends JavaPlugin{
     private static TFMCCore plugin;
@@ -52,6 +56,8 @@ public class TFMCCore extends JavaPlugin{
     private final CoreCommands commands = new CoreCommands();
     private final CoreTabCompletion tabCompletion = new CoreTabCompletion();
     private FocusService focusService;
+    private WhistleListener whistleListener;
+    private LetterListener letterListener;
 
     @Override
     public void onEnable() {
@@ -59,6 +65,8 @@ public class TFMCCore extends JavaPlugin{
         createConfigs();
         loadConfigs();
         initFocus();
+        initWhistle();
+        initLetters();
         initStats();
         registerListeners();
         getCommand(commands.cmd1).setExecutor(commands);
@@ -93,6 +101,8 @@ public class TFMCCore extends JavaPlugin{
         ok &= dropLoader.load(new File(getDataFolder(), "drops.yml"));
         ok &= stationLoader.load(new File(getDataFolder(), "stations.yml"));
         ok &= reloadFocusConfig();
+        ok &= reloadWhistleConfig();
+        ok &= reloadLettersConfig();
         ok &= reloadStatsConfigs();
         return ok;
     }
@@ -121,12 +131,34 @@ public class TFMCCore extends JavaPlugin{
         return ok;
     }
 
+    public boolean reloadWhistleConfig() {
+        boolean ok = WhistleConfigLoader.load(new File(getDataFolder(), "animal-whistle-config.yml"));
+        if (ok && whistleListener != null) {
+            whistleListener.invalidateSound();
+        }
+        return ok;
+    }
+
+    public boolean reloadLettersConfig() {
+        return LetterConfigLoader.load(new File(getDataFolder(), "letters-config.yml"));
+    }
+
     private void initFocus() {
         File folder = new File(getDataFolder(), "data/focus");
         folder.mkdirs();
         focusService = new FocusService(new FocusStore(folder));
         getServer().getPluginManager().registerEvents(new FocusListener(focusService), this);
         focusService.start();
+    }
+
+    private void initWhistle() {
+        whistleListener = new WhistleListener();
+        getServer().getPluginManager().registerEvents(whistleListener, this);
+    }
+
+    private void initLetters() {
+        letterListener = new LetterListener();
+        getServer().getPluginManager().registerEvents(letterListener, this);
     }
 
     public boolean reloadStatsConfigs() {
@@ -185,7 +217,9 @@ public class TFMCCore extends JavaPlugin{
                 "advancedcraftingstats.yml",
                 "skillsstats.yml",
                 "factionsstats.yml",
-                "focus.yml"
+                "focus.yml",
+                "animal-whistle-config.yml",
+                "letters-config.yml"
         };
 
         for (String s : files) {
