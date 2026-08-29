@@ -80,8 +80,12 @@ public class CoreCommands implements CommandExecutor {
                 ok = TFMCCore.getInstance().reloadFocusConfig();
                 label = "focus";
             }
+            case "whistle" -> {
+                ok = TFMCCore.getInstance().reloadWhistleConfig();
+                label = "animal whistle config";
+            }
             default -> {
-                sender.sendMessage("Usage: /core reload [all|config|drops|stations|stats|focus]");
+                sender.sendMessage("Usage: /core reload [all|config|drops|stations|stats|focus|whistle]");
                 return true;
             }
         }
@@ -126,7 +130,7 @@ public class CoreCommands implements CommandExecutor {
     private static void sendUsage(CommandSender sender) {
         sender.sendMessage("§e/core stats <category> [player]");
         if (canReload(sender)) {
-            sender.sendMessage("§e/core reload [all|config|drops|stations|stats|focus]");
+            sender.sendMessage("§e/core reload [all|config|drops|stations|stats|focus|whistle]");
         }
         if (sender.hasPermission(ADMIN_PERMISSION)) {
             sender.sendMessage("§e/core focus restore <player>");

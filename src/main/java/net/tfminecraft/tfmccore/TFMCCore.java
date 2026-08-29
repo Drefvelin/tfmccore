@@ -31,6 +31,8 @@ import net.tfminecraft.tfmccore.stats.categories.skills.SkillsStatCategory;
 import net.tfminecraft.tfmccore.stats.categories.skills.SkillsStatConfig;
 import net.tfminecraft.tfmccore.stats.categories.vehicles.VehiclesStatCategory;
 import net.tfminecraft.tfmccore.stats.categories.vehicles.VehiclesStatConfig;
+import net.tfminecraft.tfmccore.whistle.WhistleConfigLoader;
+import net.tfminecraft.tfmccore.whistle.WhistleListener;
 
 public class TFMCCore extends JavaPlugin{
     private static TFMCCore plugin;
@@ -52,6 +54,7 @@ public class TFMCCore extends JavaPlugin{
     private final CoreCommands commands = new CoreCommands();
     private final CoreTabCompletion tabCompletion = new CoreTabCompletion();
     private FocusService focusService;
+    private WhistleListener whistleListener;
 
     @Override
     public void onEnable() {
@@ -59,6 +62,7 @@ public class TFMCCore extends JavaPlugin{
         createConfigs();
         loadConfigs();
         initFocus();
+        initWhistle();
         initStats();
         registerListeners();
         getCommand(commands.cmd1).setExecutor(commands);
@@ -93,6 +97,7 @@ public class TFMCCore extends JavaPlugin{
         ok &= dropLoader.load(new File(getDataFolder(), "drops.yml"));
         ok &= stationLoader.load(new File(getDataFolder(), "stations.yml"));
         ok &= reloadFocusConfig();
+        ok &= reloadWhistleConfig();
         ok &= reloadStatsConfigs();
         return ok;
     }
@@ -121,12 +126,25 @@ public class TFMCCore extends JavaPlugin{
         return ok;
     }
 
+    public boolean reloadWhistleConfig() {
+        boolean ok = WhistleConfigLoader.load(new File(getDataFolder(), "animal-whistle-config.yml"));
+        if (ok && whistleListener != null) {
+            whistleListener.invalidateSound();
+        }
+        return ok;
+    }
+
     private void initFocus() {
         File folder = new File(getDataFolder(), "data/focus");
         folder.mkdirs();
         focusService = new FocusService(new FocusStore(folder));
         getServer().getPluginManager().registerEvents(new FocusListener(focusService), this);
         focusService.start();
+    }
+
+    private void initWhistle() {
+        whistleListener = new WhistleListener();
+        getServer().getPluginManager().registerEvents(whistleListener, this);
     }
 
     public boolean reloadStatsConfigs() {
@@ -185,7 +203,8 @@ public class TFMCCore extends JavaPlugin{
                 "advancedcraftingstats.yml",
                 "skillsstats.yml",
                 "factionsstats.yml",
-                "focus.yml"
+                "focus.yml",
+                "animal-whistle-config.yml"
         };
 
         for (String s : files) {
