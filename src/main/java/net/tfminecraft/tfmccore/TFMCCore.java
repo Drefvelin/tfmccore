@@ -12,6 +12,7 @@ import net.tfminecraft.tfmccore.focus.FocusListener;
 import net.tfminecraft.tfmccore.focus.FocusService;
 import net.tfminecraft.tfmccore.focus.FocusStore;
 import net.tfminecraft.tfmccore.focus.RpCharactersBridge;
+import net.tfminecraft.tfmccore.itemscan.ItemScanService;
 import net.tfminecraft.tfmccore.letters.LetterConfigLoader;
 import net.tfminecraft.tfmccore.letters.LetterListener;
 import net.tfminecraft.tfmccore.loader.ConfigLoader;
@@ -69,6 +70,7 @@ public class TFMCCore extends JavaPlugin{
         initLetters();
         initStats();
         registerListeners();
+        ItemScanService.start(this);
         getCommand(commands.cmd1).setExecutor(commands);
         getCommand(commands.cmd1).setTabCompleter(tabCompletion);
     }
@@ -80,6 +82,9 @@ public class TFMCCore extends JavaPlugin{
         }
         if (StatManager.isInitialized()) {
             StatManager.getInstance().shutdown();
+        }
+        if (ItemScanService.get() != null) {
+            ItemScanService.get().stop();
         }
     }
 
