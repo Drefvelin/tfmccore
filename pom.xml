@@ -24,9 +24,9 @@
         <dependency>
             <groupId>local</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.21.8</version>
+            <version>1.21.10</version>
             <scope>system</scope>
-            <systemPath>D:/Dokumenter/My Plugins/Reference Libs/spigot-api.jar</systemPath>
+            <systemPath>D:/Dokumenter/My Plugins/Reference Libs/spigot-api-1.21.10.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>local</groupId>

@@ -12,6 +12,7 @@ import net.tfminecraft.tfmccore.focus.FocusListener;
 import net.tfminecraft.tfmccore.focus.FocusService;
 import net.tfminecraft.tfmccore.focus.FocusStore;
 import net.tfminecraft.tfmccore.focus.RpCharactersBridge;
+import net.tfminecraft.tfmccore.golem.GolemListener;
 import net.tfminecraft.tfmccore.itemscan.ItemScanService;
 import net.tfminecraft.tfmccore.letters.LetterConfigLoader;
 import net.tfminecraft.tfmccore.letters.LetterListener;
@@ -209,6 +210,7 @@ public class TFMCCore extends JavaPlugin{
         getServer().getPluginManager().registerEvents(dropManager, this);
         getServer().getPluginManager().registerEvents(stationManager, this);
         getServer().getPluginManager().registerEvents(coreManager, this);
+        getServer().getPluginManager().registerEvents(new GolemListener(), this);
     }
 
     public void createConfigs() {

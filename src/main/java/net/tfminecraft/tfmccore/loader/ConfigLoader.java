@@ -29,6 +29,7 @@ public class ConfigLoader {
         Cache.allowBrewing = config.getBoolean("allow-brewing", true);
         Cache.allowEnchanting = config.getBoolean("allow-enchanting", true);
         Cache.horseArchery = config.getBoolean("horse-archery", true);
+        Cache.preventGolemScrape = config.getBoolean("prevent-golem-scrape", true);
 
         Cache.armourTime = config.getInt("armour-time", 7);
 

@@ -3,6 +3,7 @@ allow-brewing: false
 allow-enchanting: false
 limit-shields: true
 horse-archery: false
+prevent-golem-scrape: true
 
 armour-time: 7
 

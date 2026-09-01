@@ -11,6 +11,7 @@ public class Cache {
     public static boolean allowEnchanting;
     public static boolean limitShields;
     public static boolean horseArchery;
+    public static boolean preventGolemScrape;
 
     public static int armourTime;
 
