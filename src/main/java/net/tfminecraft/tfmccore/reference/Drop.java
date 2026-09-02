@@ -22,13 +22,22 @@ public class Drop {
     private Map<Material, Double> blocks = new HashMap<>();
     private Map<String, Double> mults = new HashMap<>();
     private Map<String, Double> tools = new HashMap<>();
+    private List<String> requiredPermissions = new ArrayList<>();
     private List<DropEntry> drops = new ArrayList<>();
 
     public Drop(String key, ConfigurationSection config) {
         id = key;
         vanillaDrops = config.getBoolean("vanilla_drops", config.getBoolean("vanilla-drops", true));
+        requiredPermissions.addAll(config.getStringList("required_permissions"));
+        if (requiredPermissions.isEmpty()) {
+            requiredPermissions.addAll(config.getStringList("required-permissions"));
+        }
 
-        for(String s : config.getStringList("materials")) {
+        List<String> materialList = config.getStringList("materials");
+        if (materialList.isEmpty()) {
+            materialList = config.getStringList("material");
+        }
+        for(String s : materialList) {
             String[] args = s.split("\\(");
             Material m = Material.AIR;
             try {
@@ -76,13 +85,21 @@ public class Drop {
     }
 
     private void parseTool(String s) {
+        if (s == null || s.isBlank() || s.equalsIgnoreCase("none")) return;
         String[] args = s.split("\\(");
-        if(args.length <= 1) tools.put(args[0], 1.0);
+        String path = args[0].trim();
+        if (path.isEmpty()) return;
+        if (!path.contains(".")) {
+            path = "m.tools." + path;
+        } else if (!path.startsWith("m.") && !path.startsWith("v.") && !path.startsWith("ia.")) {
+            path = "m." + path;
+        }
+        if(args.length <= 1) tools.put(path, 1.0);
         else {
             String mult = args[1].replace(")", "");
             try {
                 double d = Double.parseDouble(mult);
-                tools.put(args[0], d);
+                tools.put(path, d);
             } catch (Exception e) {
                 Bukkit.getLogger().info("[TFMCCore] could not parse "+mult+" to a Double");
             }
@@ -97,13 +114,33 @@ public class Drop {
         return blocks.containsKey(block.getType());
     }
 
-    public boolean hasVanillaDrops(Block block) {
-        if(!appliesTo(block)) return true;
+    public boolean appliesTo(Player player, Block block, ItemStack tool) {
+        if (!appliesTo(block)) return false;
+        for (String perm : requiredPermissions) {
+            if (perm != null && !perm.isBlank() && !player.hasPermission(perm)) {
+                return false;
+            }
+        }
+        if (!tools.isEmpty()) {
+            boolean matched = false;
+            for (String t : tools.keySet()) {
+                if (TLibs.getItemAPI().getChecker().checkItemWithPath(tool, t)) {
+                    matched = true;
+                    break;
+                }
+            }
+            if (!matched) return false;
+        }
+        return true;
+    }
+
+    public boolean hasVanillaDrops(Player player, Block block, ItemStack tool) {
+        if (!appliesTo(player, block, tool)) return true;
         return vanillaDrops;
     }
 
     public void trigger(Player p, Block block, ItemStack tool) {
-        if(!appliesTo(block)) return;
+        if(!appliesTo(p, block, tool)) return;
         double seed = Math.random();
         for(DropEntry drop : drops) {
             double chance = getFinalChance(drop.getChance(), p, tool, block.getType());
@@ -115,6 +152,10 @@ public class Drop {
 
     private void drop(DropEntry drop, Block block) {
         ItemStack item = TLibs.getItemAPI().getCreator().getItemFromPath(drop.getItem());
+        if (item == null) {
+            Bukkit.getLogger().info("[TFMCCore] could not create drop item " + drop.getItem());
+            return;
+        }
         item.setAmount(drop.getAmount());
         block.getWorld().dropItem(
             block.getLocation().clone().add(0.5, 0.2, 0.5),
