@@ -36,4 +36,13 @@ public final class TextUtil {
         matcher.appendTail(builder);
         return ChatColor.translateAlternateColorCodes('&', builder.toString());
     }
+
+    /**
+     * Strips control/format characters (line breaks, tabs, zero-width, bidi overrides, private-use
+     * characters, line/paragraph separators and the section sign) that chat input can carry, plus
+     * surrounding whitespace.
+     */
+    public static String sanitize(String raw) {
+        return raw == null ? "" : raw.replaceAll("[\\p{Cc}\\p{Cf}\\p{Co}\\p{Zl}\\p{Zp}\\u00A7]", "").trim();
+    }
 }

@@ -35,6 +35,9 @@ import net.tfminecraft.tfmccore.stats.categories.skills.SkillsStatCategory;
 import net.tfminecraft.tfmccore.stats.categories.skills.SkillsStatConfig;
 import net.tfminecraft.tfmccore.stats.categories.vehicles.VehiclesStatCategory;
 import net.tfminecraft.tfmccore.stats.categories.vehicles.VehiclesStatConfig;
+import net.tfminecraft.tfmccore.stones.LorestoneConfigLoader;
+import net.tfminecraft.tfmccore.stones.StoneItems;
+import net.tfminecraft.tfmccore.stones.StoneListener;
 import net.tfminecraft.tfmccore.whistle.WhistleConfigLoader;
 import net.tfminecraft.tfmccore.whistle.WhistleListener;
 
@@ -60,6 +63,8 @@ public class TFMCCore extends JavaPlugin{
     private FocusService focusService;
     private WhistleListener whistleListener;
     private LetterListener letterListener;
+    private StoneListener stoneListener;
+    private StoneItems stoneItems;
 
     @Override
     public void onEnable() {
@@ -69,6 +74,7 @@ public class TFMCCore extends JavaPlugin{
         initFocus();
         initWhistle();
         initLetters();
+        initStones();
         initStats();
         registerListeners();
         ItemScanService.start(this);
@@ -78,6 +84,9 @@ public class TFMCCore extends JavaPlugin{
 
     @Override
     public void onDisable() {
+        if (stoneListener != null) {
+            stoneListener.refundAll();
+        }
         if (focusService != null) {
             focusService.shutdown();
         }
@@ -109,6 +118,7 @@ public class TFMCCore extends JavaPlugin{
         ok &= reloadFocusConfig();
         ok &= reloadWhistleConfig();
         ok &= reloadLettersConfig();
+        ok &= reloadStonesConfig();
         ok &= reloadStatsConfigs();
         return ok;
     }
@@ -160,6 +170,20 @@ public class TFMCCore extends JavaPlugin{
     private void initWhistle() {
         whistleListener = new WhistleListener();
         getServer().getPluginManager().registerEvents(whistleListener, this);
+    }
+
+    public boolean reloadStonesConfig() {
+        return LorestoneConfigLoader.load(new File(getDataFolder(), "lorestones-config.yml"));
+    }
+
+    private void initStones() {
+        stoneItems = new StoneItems();
+        stoneListener = new StoneListener(stoneItems);
+        getServer().getPluginManager().registerEvents(stoneListener, this);
+    }
+
+    public static StoneItems getStoneItems() {
+        return plugin == null ? null : plugin.stoneItems;
     }
 
     private void initLetters() {
@@ -226,7 +250,8 @@ public class TFMCCore extends JavaPlugin{
                 "factionsstats.yml",
                 "focus.yml",
                 "animal-whistle-config.yml",
-                "letters-config.yml"
+                "letters-config.yml",
+                "lorestones-config.yml"
         };
 
         for (String s : files) {

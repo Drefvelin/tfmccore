@@ -48,4 +48,59 @@ class TextUtilTest {
     void leavesNonHexDigitsAlone() {
         assertEquals("&#GGGGGG", TextUtil.color("&#GGGGGG"));
     }
+
+    @Test
+    void sanitizeNullReturnsEmptyString() {
+        assertEquals("", TextUtil.sanitize(null));
+    }
+
+    @Test
+    void sanitizeStripsLineBreaksAndTrims() {
+        assertEquals("a b", TextUtil.sanitize("  a\r\n b \n"));
+    }
+
+    @Test
+    void sanitizeStripsPrivateUseChar() {
+        assertEquals("ab", TextUtil.sanitize("a\uE000b"));
+    }
+
+    @Test
+    void sanitizeStripsLineSeparator() {
+        assertEquals("ab", TextUtil.sanitize("a\u2028b"));
+    }
+
+    @Test
+    void sanitizeStripsParagraphSeparator() {
+        assertEquals("ab", TextUtil.sanitize("a\u2029b"));
+    }
+
+    @Test
+    void sanitizeWhitespaceOnlyReturnsEmptyString() {
+        assertEquals("", TextUtil.sanitize("   "));
+    }
+
+    @Test
+    void sanitizeStripsSectionSign() {
+        assertEquals("acRed", TextUtil.sanitize("a\u00A7cRed"));
+    }
+
+    @Test
+    void sanitizeStripsTab() {
+        assertEquals("ab", TextUtil.sanitize("a\tb"));
+    }
+
+    @Test
+    void sanitizeStripsZeroWidthSpace() {
+        assertEquals("ab", TextUtil.sanitize("a\u200Bb"));
+    }
+
+    @Test
+    void sanitizeStripsBidiOverride() {
+        assertEquals("ab", TextUtil.sanitize("a\u202Eb"));
+    }
+
+    @Test
+    void sanitizeOfOnlyFormatCharsReturnsEmptyString() {
+        assertEquals("", TextUtil.sanitize("\u200B\u202E\u200B"));
+    }
 }

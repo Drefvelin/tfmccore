@@ -1,0 +1,35 @@
+# ====================================
+# Lorestones Configuration
+# ====================================
+
+# Item paths (from MMOItems or ItemsAdder via TLibs)
+items:
+  lorestone: "m.consumable.lorestone"   # Consumed to add one lore line
+  namestone: "m.consumable.namestone"   # Consumed to rename the item
+
+  # Vanilla item example: "v.iron_ingot"
+  # ItemsAdder item example: "ia.tfmc:lorestone"
+
+settings:
+  blacklist:                 # Items that reject stones
+    - "v.bedrock"
+  max-length: 100            # Raw input chars, colour codes count
+  prompt-timeout-seconds: 60
+  max-lore-lines: 10         # Max lore lines a single item can hold
+
+# Messages (& colour codes and &#RRGGBB hex, empty = don't send)
+messages:
+  prompt-lore: "&aType the lore line in chat (&e%timeout%s&a). Type &ccancel&a to abort."
+  prompt-name: "&aType the new item name in chat (&e%timeout%s&a). Type &ccancel&a to abort."
+  applied-lore: "&aLore added."
+  applied-name: "&aItem renamed."
+  cancelled: "&7Cancelled, stone refunded."
+  timeout: "&7Timed out, stone refunded."
+  item-moved: "&cThe target item moved. Stone refunded."
+  empty: "&cText cannot be empty. Stone refunded."
+  too-long: "&cMax &e%max%&c characters. Stone refunded."
+  too-many-lines: "&cThis item already has &e%max%&c lore lines. Stone refunded."
+  cannot-apply: "&cYou can't use a stone on that item."
+  stacked: "&cUnstack the item first — stones apply to a single item."
+  expired: "&7That prompt already ended."
+  gave: "&aGave &e%amount%x %stone%&a to &e%player%&a."
