@@ -66,7 +66,7 @@ With all seven JARs in `libs/`, run:
 mvn -B --no-transfer-progress '-P!deploy-live' clean package
 ```
 
-Output: `target/tfmccore-1.0-SNAPSHOT.jar`. This command disables the local
+Output: `target/TFMCCore.jar`. This command disables the local
 `deploy-live` profile, which otherwise copies the JAR into a server folder
 when that folder exists.
 
