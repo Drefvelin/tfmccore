@@ -5,11 +5,16 @@ ignored by Git. Commit `libs/SHA256SUMS` to verify the exact builds in CI.
 
 ## CI setup
 
-The workflow follows `JustinasLa/activity-tf`: pushes and same-repository pull
-requests targeting `main`, plus manual runs, build and test the plugin and save
+The workflow follows `JustinasLa/activity-tf`: pushes to any branch and
+same-repository pull requests targeting `main`, plus manual runs, build and test the plugin and save
 the JAR as a workflow artifact for 90 days. Successful pushes to `main` also
 upload it to this repository's `latest` release. Manual runs only produce an
 artifact. Fork and Dependabot PRs are skipped because secrets are unavailable.
+
+Each push builds its newest commit; pushing several commits together produces
+one build. Local commits trigger CI once pushed to GitHub. New pushes do not
+cancel earlier builds. Dependabot pushes are also skipped because they cannot
+access the dependency secret.
 
 Upload these five files from `libs/` as **release assets on tag `v1`** in
 [tfmc-deps](https://github.com/JustinasLa/tfmc-deps/releases/tag/v1), not into a

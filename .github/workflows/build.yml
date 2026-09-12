@@ -2,14 +2,15 @@ name: Build
 
 on:
   push:
-    branches: [main]
+    branches: ['**']
   pull_request:
     branches: [main]
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.event_name != 'pull_request' }}
+  # Keep every push build, even when another commit is pushed immediately.
+  group: ${{ github.workflow }}-${{ github.run_id }}
+  cancel-in-progress: false
 
 permissions:
   contents: read
