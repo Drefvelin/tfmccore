@@ -27,7 +27,7 @@ public final class StatsCommand {
         }
 
         if (args.length < 1) {
-            sender.sendMessage("Usage: /core stats <category> [player]");
+            sender.sendMessage("Usage: /tcore stats <category> [player]");
             return true;
         }
 

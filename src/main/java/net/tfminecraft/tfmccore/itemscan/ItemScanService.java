@@ -7,6 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.DoubleChest;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -107,7 +108,7 @@ public final class ItemScanService implements Listener {
         InventoryView view = player.getOpenInventory();
         InventoryType topType = view.getTopInventory().getType();
         if (topType == InventoryType.CRAFTING || topType == InventoryType.CREATIVE) {
-            scanHotbar(player);
+            scanInventory(player, player.getInventory());
             return;
         }
         scanOpenView(player, view);
@@ -116,13 +117,6 @@ public final class ItemScanService implements Listener {
     private void scanOpenView(Player player, InventoryView view) {
         scanInventory(player, view.getTopInventory());
         scanInventory(player, player.getInventory());
-    }
-
-    private void scanHotbar(Player player) {
-        Inventory inventory = player.getInventory();
-        for (int slot = 0; slot < 9; slot++) {
-            scanSlot(player, inventory, slot);
-        }
     }
 
     private void scanInventory(Player player, Inventory inventory) {
@@ -140,7 +134,8 @@ public final class ItemScanService implements Listener {
         if (holder == null) {
             return true;
         }
-        return holder instanceof Player || holder instanceof BlockState || holder instanceof Entity;
+        return holder instanceof Player || holder instanceof BlockState
+                || holder instanceof Entity || holder instanceof DoubleChest;
     }
 
     private void scanSlot(Player player, Inventory inventory, int slot) {

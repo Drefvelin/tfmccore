@@ -5,6 +5,8 @@ limit-shields: true
 horse-archery: false
 prevent-golem-scrape: true
 
+drops-debug: true
+
 armour-time: 7
 
 blocked-consume:

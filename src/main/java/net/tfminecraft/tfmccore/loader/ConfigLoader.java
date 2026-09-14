@@ -30,6 +30,7 @@ public class ConfigLoader {
         Cache.allowEnchanting = config.getBoolean("allow-enchanting", true);
         Cache.horseArchery = config.getBoolean("horse-archery", true);
         Cache.preventGolemScrape = config.getBoolean("prevent-golem-scrape", true);
+        Cache.dropsDebug = config.getBoolean("drops-debug", true);
 
         Cache.armourTime = config.getInt("armour-time", 7);
 
@@ -43,8 +44,8 @@ public class ConfigLoader {
             }
         }
 
-        if(config.contains("blocked-craft")) {
-            for(String s : config.getStringList("blocked-craft")) {
+        if(config.contains("blocked-crafts")) {
+            for(String s : config.getStringList("blocked-crafts")) {
                 try {
                     Cache.blockedCrafts.add(Material.valueOf(s.toUpperCase()));
                 } catch (Exception e) {

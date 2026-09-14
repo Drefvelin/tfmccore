@@ -8,9 +8,9 @@ depend: [TLibs]
 softdepend: [VehicleFramework, RPCharacters, AdvancedCrafting, MythicLib, MMOCore, SimpleFactions]
 
 commands:
-  core:
+  tcore:
     description: TFMC Core command
-    usage: /core reload [all|config|drops|stations|stats|focus|whistle|letters|lorestones] | /core stats <category> [player] | /core focus restore <player> | /core stones give <lorestone|namestone> [player] [amount]
+    usage: /tcore reload [all|config|drops|stations|stats|focus|whistle|letters|lorestones] | /tcore stats <category> [player] | /tcore focus restore <player> | /tcore stones give <lorestone|namestone> [player] [amount]
     aliases: [tfmc]
 
 permissions:

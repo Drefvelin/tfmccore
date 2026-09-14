@@ -19,7 +19,7 @@ public final class CoreTabCompletion implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!cmd.getName().equalsIgnoreCase("core")) {
+        if (!cmd.getName().equalsIgnoreCase("tcore")) {
             return List.of();
         }
 

@@ -111,14 +111,31 @@ public class Drop {
     }
 
     public boolean appliesTo(Block block) {
-        return blocks.containsKey(block.getType());
+        return block != null && blocks.containsKey(block.getType());
+    }
+
+    public boolean appliesToMaterial(Material material) {
+        return material != null && blocks.containsKey(material);
     }
 
     public boolean appliesTo(Player player, Block block, ItemStack tool) {
-        if (!appliesTo(block)) return false;
+        return skipReason(player, block, tool) == null;
+    }
+
+    public String skipReason(Player player, Block block, ItemStack tool) {
+        if (!appliesTo(block)) {
+            return "material " + (block == null ? "null" : block.getType()) + " not in table";
+        }
+        return skipReasonForBroken(player, tool, block.getType());
+    }
+
+    public String skipReasonForBroken(Player player, ItemStack tool, Material broken) {
+        if (!appliesToMaterial(broken)) {
+            return "material " + broken + " not in table";
+        }
         for (String perm : requiredPermissions) {
             if (perm != null && !perm.isBlank() && !player.hasPermission(perm)) {
-                return false;
+                return "missing permission " + perm;
             }
         }
         if (!tools.isEmpty()) {
@@ -129,9 +146,15 @@ public class Drop {
                     break;
                 }
             }
-            if (!matched) return false;
+            if (!matched) {
+                return "tool did not match " + tools.keySet();
+            }
         }
-        return true;
+        return null;
+    }
+
+    public boolean keepsVanillaDrops() {
+        return vanillaDrops;
     }
 
     public boolean hasVanillaDrops(Player player, Block block, ItemStack tool) {
@@ -140,11 +163,26 @@ public class Drop {
     }
 
     public void trigger(Player p, Block block, ItemStack tool) {
-        if(!appliesTo(p, block, tool)) return;
+        trigger(p, block, tool, block.getType());
+    }
+
+    public void trigger(Player p, Block block, ItemStack tool, Material broken) {
+        String skip = skipReasonForBroken(p, tool, broken);
+        if (skip != null) {
+            DropDebug.log("table " + id + " skip trigger: " + skip);
+            return;
+        }
         double seed = Math.random();
-        for(DropEntry drop : drops) {
-            double chance = getFinalChance(drop.getChance(), p, tool, block.getType());
-            if(seed <= chance) {
+        DropDebug.log("table " + id + " roll seed=" + String.format("%.4f", seed)
+                + " entries=" + drops.size() + " broken=" + broken);
+        for (DropEntry drop : drops) {
+            double chance = getFinalChance(drop.getChance(), p, tool, broken);
+            boolean hit = seed <= chance;
+            DropDebug.log("table " + id + " entry " + drop.getItem()
+                    + " chance=" + String.format("%.4f", chance)
+                    + " seed=" + String.format("%.4f", seed)
+                    + " " + (hit ? "HIT" : "MISS"));
+            if (hit) {
                 drop(drop, block);
             }
         }
@@ -153,14 +191,19 @@ public class Drop {
     private void drop(DropEntry drop, Block block) {
         ItemStack item = TLibs.getItemAPI().getCreator().getItemFromPath(drop.getItem());
         if (item == null) {
+            DropDebug.log("table " + id + " could not create item " + drop.getItem());
             Bukkit.getLogger().info("[TFMCCore] could not create drop item " + drop.getItem());
             return;
         }
-        item.setAmount(drop.getAmount());
+        int amount = drop.getAmount();
+        item.setAmount(amount);
         block.getWorld().dropItem(
             block.getLocation().clone().add(0.5, 0.2, 0.5),
             item
         );
+        DropDebug.log("table " + id + " spawned " + drop.getItem() + " x" + amount
+                + " at " + block.getWorld().getName()
+                + " " + block.getX() + "," + block.getY() + "," + block.getZ());
     }
 
     private double getFinalChance(Double chance, Player p, ItemStack tool, Material m) {

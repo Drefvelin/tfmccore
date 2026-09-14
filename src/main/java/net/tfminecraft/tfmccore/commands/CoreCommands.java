@@ -15,7 +15,7 @@ import net.tfminecraft.tfmccore.stones.LorestoneConfig;
 import net.tfminecraft.tfmccore.stones.StoneItems;
 
 public class CoreCommands implements CommandExecutor {
-    public String cmd1 = "core";
+    public String cmd1 = "tcore";
 
     private static final String RELOAD_PERMISSION = "tfmccore.reload";
     private static final String ADMIN_PERMISSION = "tfmccore.admin";
@@ -100,7 +100,7 @@ public class CoreCommands implements CommandExecutor {
                 label = "lorestones config";
             }
             default -> {
-                sender.sendMessage("Usage: /core reload [all|config|drops|stations|stats|focus|whistle|letters|lorestones]");
+                sender.sendMessage("Usage: /tcore reload [all|config|drops|stations|stats|focus|whistle|letters|lorestones]");
                 return true;
             }
         }
@@ -119,16 +119,16 @@ public class CoreCommands implements CommandExecutor {
             return true;
         }
         if (args.length < 2 || !args[1].equalsIgnoreCase("give")) {
-            sender.sendMessage("Usage: /core stones give <lorestone|namestone> [player] [amount]");
+            sender.sendMessage("Usage: /tcore stones give <lorestone|namestone> [player] [amount]");
             return true;
         }
         return handleStonesGive(sender, args);
     }
 
-    // /core stones give <lorestone|namestone> [player] [amount]
+    // /tcore stones give <lorestone|namestone> [player] [amount]
     private boolean handleStonesGive(CommandSender sender, String[] args) {
         if (args.length < 3) {
-            sender.sendMessage("Usage: /core stones give <lorestone|namestone> [player] [amount]");
+            sender.sendMessage("Usage: /tcore stones give <lorestone|namestone> [player] [amount]");
             return true;
         }
 
@@ -152,7 +152,7 @@ public class CoreCommands implements CommandExecutor {
         } else if (sender instanceof Player player) {
             target = player;
         } else {
-            sender.sendMessage("Console must name a player: /core stones give <stone> <player> [amount]");
+            sender.sendMessage("Console must name a player: /tcore stones give <stone> <player> [amount]");
             return true;
         }
 
@@ -194,7 +194,7 @@ public class CoreCommands implements CommandExecutor {
             return true;
         }
         if (args.length < 3 || !args[1].equalsIgnoreCase("restore")) {
-            sender.sendMessage("Usage: /core focus restore <player>");
+            sender.sendMessage("Usage: /tcore focus restore <player>");
             return true;
         }
         Player target = Bukkit.getPlayerExact(args[2]);
@@ -218,13 +218,13 @@ public class CoreCommands implements CommandExecutor {
     }
 
     private static void sendUsage(CommandSender sender) {
-        sender.sendMessage("§e/core stats <category> [player]");
+        sender.sendMessage("§e/tcore stats <category> [player]");
         if (canReload(sender)) {
-            sender.sendMessage("§e/core reload [all|config|drops|stations|stats|focus|whistle|letters|lorestones]");
+            sender.sendMessage("§e/tcore reload [all|config|drops|stations|stats|focus|whistle|letters|lorestones]");
         }
         if (sender.hasPermission(ADMIN_PERMISSION)) {
-            sender.sendMessage("§e/core focus restore <player>");
-            sender.sendMessage("§e/core stones give <lorestone|namestone> [player] [amount]");
+            sender.sendMessage("§e/tcore focus restore <player>");
+            sender.sendMessage("§e/tcore stones give <lorestone|namestone> [player] [amount]");
         }
     }
 }
