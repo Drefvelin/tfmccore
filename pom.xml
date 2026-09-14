@@ -9,78 +9,90 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.release>25</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- Same layout as Workspace/simplefactions -->
-        <tfmc.refs>D:/Documents/TFMC/ReferenceLibs</tfmc.refs>
-        <tfmc.builds>D:/Documents/TFMC/Builds/TFMCCore</tfmc.builds>
-        <tfmc.tlibs>D:/Documents/TFMC/Builds/TLibs</tfmc.tlibs>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>papermc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
+        <!-- Paper API: superset of spigot-api, and the server actually runs Paper -->
         <dependency>
-            <groupId>local</groupId>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.21.10-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Shaded into the server jar at runtime, so provided -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.10.1</version>
-            <scope>system</scope>
-            <systemPath>${tfmc.refs}/gson-2.10.1.jar</systemPath>
+            <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>local</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.21.10</version>
-            <scope>system</scope>
-            <systemPath>${tfmc.refs}/spigot-api-1.21.10.jar</systemPath>
-        </dependency>
+
+        <!-- Private jar-only deps. Gitignored; CI downloads them from the
+             JustinasLa/tfmc-deps release and verifies libs/SHA256SUMS.
+             Versions must match what the live server runs: compiling against a
+             different build is how NoSuchMethodError gets shipped. -->
         <dependency>
             <groupId>local</groupId>
             <artifactId>TLibs</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${tfmc.tlibs}/TLibs.jar</systemPath>
+            <systemPath>${project.basedir}/libs/TLibs-1.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>local</groupId>
             <artifactId>VehicleFramework</artifactId>
             <version>1.1.11</version>
             <scope>system</scope>
-            <systemPath>${tfmc.refs}/vehicleframework-1.1.11.jar</systemPath>
+            <systemPath>${project.basedir}/libs/vehicleframework-1.1.11.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>local</groupId>
             <artifactId>RPCharacters</artifactId>
             <version>1.1.6</version>
             <scope>system</scope>
-            <systemPath>${tfmc.refs}/rpcharacters-1.1.6.jar</systemPath>
+            <systemPath>${project.basedir}/libs/rpcharacters-1.1.6.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>local</groupId>
             <artifactId>AdvancedCrafting</artifactId>
             <version>1.1.7</version>
             <scope>system</scope>
-            <systemPath>${tfmc.refs}/advancedcrafting-1.1.7.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>local</groupId>
-            <artifactId>MythicLib</artifactId>
-            <version>1.7</version>
-            <scope>system</scope>
-            <systemPath>${tfmc.refs}/MythicLib-1.7.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>local</groupId>
-            <artifactId>MMOCore</artifactId>
-            <version>1.13.1</version>
-            <scope>system</scope>
-            <systemPath>${tfmc.refs}/MMOCore-1.13.1.jar</systemPath>
+            <systemPath>${project.basedir}/libs/advancedcrafting-1.1.7.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>local</groupId>
             <artifactId>SimpleFactions</artifactId>
             <version>2.8.7</version>
             <scope>system</scope>
-            <systemPath>${tfmc.refs}/simplefactions-2.8.7.jar</systemPath>
+            <systemPath>${project.basedir}/libs/simplefactions-2.8.7.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>local</groupId>
+            <artifactId>MythicLib</artifactId>
+            <version>1.7.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/MythicLib-dist-1.7.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>local</groupId>
+            <artifactId>MMOCore</artifactId>
+            <version>1.13.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/MMOCore-1.13.1.jar</systemPath>
+        </dependency>
+
+        <!-- Tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>

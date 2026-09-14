@@ -7,8 +7,6 @@ import io.lumine.mythic.lib.api.event.skill.SkillCastEvent;
 import io.lumine.mythic.lib.skill.Skill;
 import io.lumine.mythic.lib.skill.handler.SkillHandler;
 import io.lumine.mythic.lib.skill.trigger.TriggerType;
-import net.Indyuce.mmocore.skill.CastableSkill;
-import net.Indyuce.mmocore.skill.RegisteredSkill;
 import net.tfminecraft.tfmccore.stats.StatManager;
 
 public final class SkillsStatMain {
@@ -40,14 +38,9 @@ public final class SkillsStatMain {
         StatManager.getInstance().increment(playerUuid, CATEGORY_ID, statKey, 1L);
     }
 
+    // MMOCore's ClassSkill/RegisteredSkill accessors move between builds, so key off the
+    // MythicLib handler id instead: it is the stable skill identifier and needs no MMOCore API.
     private static String resolveSkillId(Skill cast) {
-        if (cast instanceof CastableSkill castable) {
-            RegisteredSkill registered = castable.getSkill().getSkill();
-            if (registered != null && registered.getName() != null && !registered.getName().isBlank()) {
-                return registered.getName();
-            }
-        }
-
         SkillHandler<?> handler = cast.getHandler();
         if (handler != null) {
             return handler.getLowerCaseId();

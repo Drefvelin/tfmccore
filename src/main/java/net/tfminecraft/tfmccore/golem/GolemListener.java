@@ -60,7 +60,7 @@ public class GolemListener implements Listener {
         log("entity"
             + " player=" + player.getName()
             + " hand=" + event.getHand()
-            + " weather=" + golem.getWeatherState()
+            + " weather=" + golem.getWeatheringState()
             + " item=" + itemType(item)
             + " axe=" + isAxe(item)
             + " cancelled=" + event.isCancelled());
@@ -73,7 +73,7 @@ public class GolemListener implements Listener {
         boolean shouldBlock = Cache.preventGolemScrape && reanimate;
         log("spawn"
             + " reason=" + event.getSpawnReason()
-            + " weather=" + golem.getWeatherState()
+            + " weather=" + golem.getWeatheringState()
             + " prevent=" + Cache.preventGolemScrape
             + " cancelledBefore=" + event.isCancelled()
             + " willCancel=" + shouldBlock
