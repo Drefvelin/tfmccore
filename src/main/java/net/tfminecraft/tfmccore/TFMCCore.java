@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.Plugins.TLibs.database.SqliteProvider;
 import net.tfminecraft.tfmccore.commands.CoreCommands;
 import net.tfminecraft.tfmccore.commands.CoreTabCompletion;
+import net.tfminecraft.tfmccore.commands.SilentPermissionCommand;
 import net.tfminecraft.tfmccore.focus.FocusConfigLoader;
 import net.tfminecraft.tfmccore.focus.FocusListener;
 import net.tfminecraft.tfmccore.focus.FocusService;
@@ -80,6 +81,9 @@ public class TFMCCore extends JavaPlugin{
         ItemScanService.start(this);
         getCommand(commands.cmd1).setExecutor(commands);
         getCommand(commands.cmd1).setTabCompleter(tabCompletion);
+        SilentPermissionCommand silentPermission = new SilentPermissionCommand();
+        getCommand("silentpermission").setExecutor(silentPermission);
+        getCommand("silentpermission").setTabCompleter(silentPermission);
     }
 
     @Override
