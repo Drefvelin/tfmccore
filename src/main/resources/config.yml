@@ -10,7 +10,6 @@ drops-debug: true
 armour-time: 7
 
 blocked-consume:
-  - MILK_BUCKET
   - GOLDEN_APPLE
   - ENCHANTED_GOLDEN_APPLE
   - SUSPICIOUS_STEW

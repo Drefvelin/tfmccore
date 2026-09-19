@@ -172,11 +172,10 @@ public class Drop {
             DropDebug.log("table " + id + " skip trigger: " + skip);
             return;
         }
-        double seed = Math.random();
-        DropDebug.log("table " + id + " roll seed=" + String.format("%.4f", seed)
-                + " entries=" + drops.size() + " broken=" + broken);
+        DropDebug.log("table " + id + " roll entries=" + drops.size() + " broken=" + broken);
         for (DropEntry drop : drops) {
             double chance = getFinalChance(drop.getChance(), p, tool, broken);
+            double seed = Math.random();
             boolean hit = seed <= chance;
             DropDebug.log("table " + id + " entry " + drop.getItem()
                     + " chance=" + String.format("%.4f", chance)
