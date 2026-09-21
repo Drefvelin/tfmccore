@@ -1,10 +1,13 @@
 package net.tfminecraft.tfmccore.letters;
 
+import java.util.ArrayList;
+
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 import me.Plugins.TLibs.TLibs;
@@ -59,6 +62,41 @@ public class LetterItems {
         }
     }
 
+    /**
+     * Unsigned letter after an edit (not a sign). Fresh template so the skin
+     * survives vanilla's plain book write, with the new pages and the previous
+     * display name, lore, and PDC.
+     */
+    public ItemStack createEditedLetter(BookMeta source, ItemStack previous) {
+        try {
+            ItemStack stack = template(LetterConfig.letterPath);
+            if (stack == null) return null;
+            int amount = previous != null ? Math.max(1, previous.getAmount()) : 1;
+            stack.setAmount(amount);
+            BookMeta meta = (BookMeta) stack.getItemMeta();
+            if (meta != null) {
+                if (source != null) {
+                    meta.setPages(source.getPages());
+                }
+                ItemMeta prevMeta = previous != null ? previous.getItemMeta() : null;
+                if (prevMeta != null) {
+                    if (prevMeta.hasDisplayName()) {
+                        meta.setDisplayName(prevMeta.getDisplayName());
+                    }
+                    if (prevMeta.hasLore() && prevMeta.getLore() != null) {
+                        meta.setLore(new ArrayList<>(prevMeta.getLore()));
+                    }
+                    copyPdc(prevMeta, meta);
+                }
+                stack.setItemMeta(meta);
+            }
+            return stack;
+        } catch (Exception ex) {
+            warn("Failed to restore edited letter: " + ex.getMessage());
+            return null;
+        }
+    }
+
     public ItemStack createOpenedLetter(BookMeta source) {
         try {
             ItemStack stack = template(LetterConfig.writtenLetterOpenPath);
@@ -89,6 +127,14 @@ public class LetterItems {
             return null;
         }
         return stack.clone();
+    }
+
+    private static void copyPdc(ItemMeta from, ItemMeta to) {
+        try {
+            from.getPersistentDataContainer().copyTo(to.getPersistentDataContainer(), true);
+        } catch (NoSuchMethodError | UnsupportedOperationException ignored) {
+            // Older API without copyTo. Name and lore are already copied.
+        }
     }
 
     private void copyBookContent(BookMeta source, BookMeta target) {

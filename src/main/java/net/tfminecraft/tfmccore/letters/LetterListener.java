@@ -22,13 +22,28 @@ public class LetterListener implements Listener {
 
     @EventHandler
     public void onBookSign(PlayerEditBookEvent event) {
-        if (!event.isSigning()) return;
         Player player = event.getPlayer();
         // Read from the slot the event names, not the main hand - books can be signed from the off-hand.
         int slot = event.getSlot();
         if (slot < 0 || slot >= player.getInventory().getSize()) return;
         ItemStack handItem = player.getInventory().getItem(slot);
         if (!items.isLetter(handItem)) return;
+        if (!event.isSigning()) {
+            // Vanilla writes a plain book and quill when the editor closes. Put the
+            // unsigned letter back two ticks later, after ArmourShop's one-tick skin restore.
+            BookMeta edited = event.getNewBookMeta();
+            ItemStack previous = handItem.clone();
+            Bukkit.getScheduler().runTaskLater(TFMCCore.getInstance(), () -> {
+                if (!player.isOnline()) return;
+                ItemStack restored = items.createEditedLetter(edited, previous);
+                if (restored == null) {
+                    warn("Failed to restore edited letter for " + player.getName());
+                    return;
+                }
+                player.getInventory().setItem(slot, restored);
+            }, 2L);
+            return;
+        }
         // Cancel so the vanilla written book is never produced - we hand out our own item instead.
         event.setCancelled(true);
 
